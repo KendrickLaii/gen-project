@@ -37,6 +37,27 @@ taskRoutes.get("/tasks", async function (req, res) {
     }
 });
 
+taskRoutes.get("/tasks/:index", async function (req, res) {
+    try {
+        const index = parseInt(req.params.index);
+        if (isNaN(index)) {
+            res.status(400).json({ message: "index not a number" });
+            return;
+        }
+
+
+
+        const result = await client.query(/*SQL*/ ` SELECT * FROM tasks WHERE id = $1`, [index]);
+        console.log(result)
+        const tasks: Task[] = result.rows;
+        res.json(tasks);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).json({ message: "internal sever error" });
+    }
+});
+
+
 taskRoutes.delete("/tasks/:index", async function (req, res) {
     try {
         const index = parseInt(req.params.index);
@@ -65,7 +86,14 @@ taskRoutes.put("/tasks/:id", async function (req, res) {
 
 
 
-        await client.query(/*SQL*/ ` UPDATE tasks SET title = $1 SET content = $2 SET status = $3 WHERE id = $4`, [req.body.title, req.body.content, req.body.status, taskID]);
+        await client.query(/*SQL*/ ` UPDATE tasks SET title = $1 SET content = $2 SET status = $3  SET assign_to = $4 SET due_date = $5 WHERE id = $6`, [
+            req.body.title, 
+            req.body.content, 
+            req.body.status, 
+            req.body.assign_to,
+            req.body.due_date,
+            taskID
+        ]);
         res.json({ success: true });
     } catch (err) {
         console.error(err.message);
