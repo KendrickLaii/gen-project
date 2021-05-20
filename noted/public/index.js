@@ -73,6 +73,7 @@ async function fetchAndDisplayTasks() {
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                   <li>
+                       <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editModal">Edit</a>
                   </li>
                   <li><a class="dropdown-item" onclick="deleteTask(${tasks.id})">Delete</a></li>
                 </ul>
@@ -92,28 +93,29 @@ async function fetchAndDisplayTasks() {
 }
 
 // creata tasks
-document
-    .querySelector("#tasks-form")
+document.querySelector("#tasks-form")
     .addEventListener("submit", async function (event) {
         event.preventDefault();
         console.log("submit");
-        const form = event.target;
-
-        const formData = new FormData();
-        formData.append("title", form.title.value);
-        formData.append("content", form.content.value);
-        formData.append("status", form.status.value);
-        formData.append("assign_to", form.assign_to.value);
-        formData.append("due_date", form.due_date.value);
+        const inputData = event.target;
+        const taskObject = {};
+        taskObject['title'] = inputData.title.value;
+        taskObject['content'] = inputData.content.value;
+        taskObject['status'] = inputData.status.value;
+        taskObject['assign_to'] = inputData.assign_to.value;
+        taskObject['due_date'] = inputData.due_date.value;
 
         const res = await fetch("/tasks", {
             method: "POST",
-            body: formData,
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(taskObject)
         });
         const result = await res.json();
 
         if (res.status === 200 && result.success) {
-            form.reset();
+            inputData.reset();
             fetchAndDisplayTasks();
         }
     });

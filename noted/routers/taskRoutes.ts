@@ -14,7 +14,11 @@ taskRoutes.post("/tasks", async function (req, res) {
             req.body.due_date,
             false,
         ]);
-
+        console.log(req.body.title);
+        console.log(req.body.content);
+        console.log(req.body.status);
+        console.log(req.body.assign_to);
+        console.log(req.body.due_date);
         res.json({ success: true });
     } catch (err) {
         console.error(err.message);
