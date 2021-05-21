@@ -41,20 +41,80 @@ async function deleteTask(taskID) {
         alert(data.message);
     }
 }
-// fetch
-// async function editTask(taskID) {
-//     const content = document.getElementById(`content-${taskID}`).value;
-//     const res = await fetch(`/tasks/${taskID}`, {
-//         method: "PUT",
-//         headers: {
-//             "content-type": "application/json",
-//         },
-//         body: JSON.stringify({ content }),
-//     });
-//     if (res.status === 200) {
-//         fetchAndDisplayTasks();
-//     }
-// }
+
+async function getTaskByIdAndEditTask(taskID) {
+    //fetch the old date into the edit form;
+    const editRes = await fetch(`/tasks/${taskID}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    const editData = await editRes.json();
+    console.log(editData);
+    let htmlStr1 = ``;
+    for ( const task of editData) {
+        htmlStr1 += `
+        <form name="eTasks-form" id="eTasks-form" action="/tasks" method="POST">
+        <div class="mb-3">
+          <label for="eTitle" class="col-form-label">Title:</label>
+          <input type="text" name="eTitle" id="eTitle" value="${task.title}" class="form-control">
+        </div>
+        <div class="mb-3">
+          <label for="eContent" class="col-form-label">Content:</label>
+          <input type="text" name="eContent" id="eContent" value="${task.content}" class="form-control"></input>
+        </div>
+        <div class="mb-3">
+          <label for="eStatus" class="col-form-label">Status:</label>
+          <input type="text" name="eStatus" id="eStatus" value="${task.status}" class="form-control"></input>
+        </div>
+        <div class="mb-3">
+          <label for="eAssign_to" class="col-form-label">Assign to:</label>
+          <input type="text" name="eAssign_to" id="eAssign_to" value="${task.assign_to}" class="form-control"></input>
+        </div>
+        <div class="mb-3">
+          <label for="eDue_date" class="col-form-label">Due date:</label>
+          <input type="text" name="eDue_date" id="eDue_date " value="${task.due_date.substr(0,10)}" class="form-control"></input>
+        </div>
+        <button type="submit" value="submit" class="btn btn-primary">Submit</button>
+      </form>
+        `;
+        
+
+
+    }
+    document.querySelector(".modal-body.edit").innerHTML = htmlStr1;
+
+    // edit form submit
+    document.querySelector("#eTasks-form")
+    .addEventListener("submit", async function (event) {
+        event.preventDefault();
+        console.log("submit");
+        const inputEditData = event.target;
+        const editTaskObject = {};
+        editTaskObject['title'] = inputEditData.eTitle.value;
+        editTaskObject['content'] = inputEditData.eContent.value;
+        editTaskObject['status'] = inputEditData.eStatus.value;
+        editTaskObject['assign_to'] = inputEditData.eAssign_to.value;
+        editTaskObject['due_date'] = inputEditData.eDue_date.value;
+        console.log("editTaskObject (js): " + editTaskObject);
+
+        const res = await fetch(`/tasks/${taskID}`, {
+            method: "PUT",
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(editTaskObject)
+        });
+        const result = await res.json();
+        console.log(result)
+
+        if (res.status === 200 && result.success) {
+            fetchAndDisplayTasks();
+        }
+    });
+    
+}
 
 async function fetchAndDisplayTasks() {
     const res = await fetch("/tasks");
@@ -73,6 +133,7 @@ async function fetchAndDisplayTasks() {
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                   <li>
+                       <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editModal" onclick="getTaskByIdAndEditTask(${tasks.id})">Edit</a>
                   </li>
                   <li><a class="dropdown-item" onclick="deleteTask(${tasks.id})">Delete</a></li>
                 </ul>
@@ -82,8 +143,8 @@ async function fetchAndDisplayTasks() {
             <p>${tasks.content}</p>
         </div>
         <div class="card-foot">
-            <h5>${tasks.status}</h5>
-            <h5>${tasks.due_date}</h5>
+            <h5>${tasks.status}</h5>            
+            <h5>${tasks.due_date.substr(0,10)}</h5>
             <div class="assignto">${tasks.assign_to}</div>
         </div>
 </div>`;
@@ -91,29 +152,30 @@ async function fetchAndDisplayTasks() {
     document.querySelector(".card-area").innerHTML = htmlStr;
 }
 
-// create tasks
-document
-    .querySelector("#tasks-form")
+// creata tasks
+document.querySelector("#tasks-form")
     .addEventListener("submit", async function (event) {
         event.preventDefault();
         console.log("submit");
-        const form = event.target;
-
-        const formData = new FormData();
-        formData.append("title", form.title.value);
-        formData.append("content", form.content.value);
-        formData.append("status", form.status.value);
-        formData.append("assign_to", form.assign_to.value);
-        formData.append("due_date", form.due_date.value);
+        const inputData = event.target;
+        const taskObject = {};
+        taskObject['title'] = inputData.title.value;
+        taskObject['content'] = inputData.content.value;
+        taskObject['status'] = inputData.status.value;
+        taskObject['assign_to'] = inputData.assign_to.value;
+        taskObject['due_date'] = inputData.due_date.value;
 
         const res = await fetch("/tasks", {
             method: "POST",
-            body: formData,
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(taskObject)
         });
         const result = await res.json();
 
         if (res.status === 200 && result.success) {
-            form.reset();
+            inputData.reset();
             fetchAndDisplayTasks();
         }
     });

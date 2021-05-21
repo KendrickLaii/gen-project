@@ -27,7 +27,7 @@ const app = express();
 //middleware
 app.use(
     expressSession({
-        secret: "Tecky Academy teaches typescript",
+        secret: "I GO TO SCHOOL BY BUS",
         resave: true,
         saveUninitialized: true,
     })
@@ -69,7 +69,7 @@ app.use(express.static(path.join(__dirname, "public")));
 // };
 // app.use(isLoggedIn, express.static("admin"));
 
-const PORT = 8080;
+const PORT = 3333;
 
 app.listen(PORT, () => {
     console.log(`Listening at http://localhost:${PORT}/`);

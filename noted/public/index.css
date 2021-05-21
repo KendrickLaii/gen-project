@@ -117,7 +117,9 @@
 
 @media screen and (min-width: 900px) {
     .card-area {
+        width: 100%;
         flex-direction: row;
+        flex-wrap: wrap;
         display: flex;
         justify-content: center;
     }
