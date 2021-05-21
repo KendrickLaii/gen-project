@@ -110,10 +110,12 @@ async function getTaskByIdAndEditTask(taskID) {
         console.log(result)
 
         if (res.status === 200 && result.success) {
+            window.onload()
             fetchAndDisplayTasks();
+            window.location = "/index.html";
         }
     });
-    
+    // document.querySelector('.modal-body.edit').style['tabindex'] = -1
 }
 
 async function fetchAndDisplayTasks() {
