@@ -41,7 +41,7 @@ async function deleteTask(taskID) {
         alert(data.message);
     }
 }
-
+// fetch
 // async function editTask(taskID) {
 //     const content = document.getElementById(`content-${taskID}`).value;
 //     const res = await fetch(`/tasks/${taskID}`, {
@@ -52,7 +52,7 @@ async function deleteTask(taskID) {
 //         body: JSON.stringify({ content }),
 //     });
 //     if (res.status === 200) {
-//         fetchAndDisplayMemos();
+//         fetchAndDisplayTasks();
 //     }
 // }
 
@@ -91,7 +91,7 @@ async function fetchAndDisplayTasks() {
     document.querySelector(".card-area").innerHTML = htmlStr;
 }
 
-// creata tasks
+// create tasks
 document
     .querySelector("#tasks-form")
     .addEventListener("submit", async function (event) {
