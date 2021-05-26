@@ -15,6 +15,10 @@
 	font-weight: 500;
 }
 
+.main {
+    background-color: #C5c6d0;
+}
+
 /* fist navbar */
 
 .nav {
@@ -54,6 +58,7 @@
     height: 35px;
     display: flex;
     justify-content: space-between;
+    background-color: #C5c6d0;
 }
 
 .secNav-phone li {
@@ -98,10 +103,10 @@
     margin: 30px 20px 20px 30px;
     width: 350px;
     height: 350px;
-    border-radius: 20px;
+    border-radius: 12px;
     background: #ffffff;
-    box-shadow:  5px 5px 10px #d4d4d4,
-                 -5px -5px 10px #ffffff;
+    box-shadow: inset 35px 35px 70px #d9d9d9,
+                inset -35px -35px 70px #ffffff;
 }
 
 .card:hover {
@@ -113,6 +118,7 @@
     display: flex;
     justify-content: space-between;
     border-bottom: solid black;
+    border-width: 1px;
 }
 
 .card-head .task-title {
@@ -133,6 +139,7 @@
     display: flex;
     justify-content: space-between;
     border-top: solid black;
+    border-width: 1px;
 }
 
 .card-foot .assignto{
@@ -196,7 +203,7 @@
 
     .secNav-pc {
         height: 35px;
-        background-color: #ffffff;
+        background-color: #C5c6d0;
         display: flex;
         justify-content: space-between;
     }
