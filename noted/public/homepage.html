@@ -16,11 +16,11 @@
 <body>
   <div>
     <div class="nav">
-      <li class="logo">
-        Noted.
+      <li>
+        <p class="logo">Noted.</p>
       </li>
-      <li class="username">
-        username
+      <li>
+        <p class="username">Kenny</p>
       </li>
     </div>
     <div class="secNav-pc">
@@ -39,6 +39,7 @@
         <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
           <i class="fas fa-plus"></i>
         </button>
+        <!-- create form -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -51,30 +52,33 @@
                 <form name="tasks-form" id="tasks-form" action="/tasks" method="POST">
                   <div class="mb-3">
                     <label for="title" class="col-form-label">Title:</label>
-                    <input type="text" name="title" id="title" class="form-control">
+                    <input type="text" name="title" id="title" maxlength="25" required class="form-control">
                   </div>
                   <div class="mb-3">
                     <label for="content" class="col-form-label">Content:</label>
-                    <input type="text" name="content" id="content" class="form-control"></input>
+                    <textarea type="text" name="content" id="content" maxlength="300" required class="form-control"></textarea>
                   </div>
                   <div class="mb-3">
                     <label for="status" class="col-form-label">Status:</label>
-                    <input type="text" name="status" id="status" class="form-control"></input>
+                    <select name="status" id="status" class="form-control">
+                      <option value="To-do">To-do</option>
+                      <option value="On-going">On-going</option>
+                      <option value="Done">Done</option>
+                    </select>
                   </div>
                   <div class="mb-3">
                     <label for="assign_to" class="col-form-label">Assign to:</label>
-                    <input type="text" name="assign_to" id="assign_to" class="form-control"></input>
+                    <input type="text" name="assign_to" id="assign_to" maxlength="10" required class="form-control"></input>
                   </div>
                   <div class="mb-3">
                     <label for="due_date" class="col-form-label">Due date:</label>
-                    <input type="date" name="due_date" id="due_date" class="form-control"></input>
+                    <input type="date" name="due_date" id="due_date" required class="form-control" ></input>
                   </div>
-                  <button type="submit" value="submit" class="btn btn-primary">Submit</button>
-                </form>
                 
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" value="submit" class="btn btn-primary modal-btn">Submit</button>
+              </form>
               </div>
             </div>
           </div>
@@ -86,15 +90,17 @@
         <select class="status-select">
           <option>To-do</option>
           <option>On-going</option>
-          <option>Document</option>
+          <option>Done</option>
         </select>
       </li>
       <li class="addNewTaskButton">
-        <i class="fas fa-plus"></i>
+        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
+          <i class="fas fa-plus"></i>
+        </button>
       </li>
     </div>
     <div class="main">
-      <h1 class="status-name">To-Do</h1>
+      <h1 class="status-name">Tasks</h1>
       <div class="card-area">
             <!-- <div class="card">
                     <div class="card-head">
@@ -164,9 +170,6 @@
             </div>
             <button type="submit" value="submit" class="btn btn-primary">Submit</button>
           </form>  -->
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
     </div>

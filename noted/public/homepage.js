@@ -58,25 +58,34 @@ async function getTaskByIdAndEditTask(taskID) {
         <form name="eTasks-form" id="eTasks-form" action="/tasks" method="POST">
         <div class="mb-3">
           <label for="eTitle" class="col-form-label">Title:</label>
-          <input type="text" name="eTitle" id="eTitle" value="${task.title}" class="form-control">
+          <input type="text" name="eTitle" id="eTitle" value="${task.title}" maxlength="25" required class="form-control">
         </div>
         <div class="mb-3">
           <label for="eContent" class="col-form-label">Content:</label>
-          <input type="text" name="eContent" id="eContent" value="${task.content}" class="form-control"></input>
+          <textarea type="text" name="eContent" id="eContent" maxlength="270" required class="form-control">${task.content}</textarea>
         </div>
         <div class="mb-3">
-          <label for="eStatus" class="col-form-label">Status:</label>
-          <input type="text" name="eStatus" id="eStatus" value="${task.status}" class="form-control"></input>
+        <label for="eStatus" class="col-form-label">Status:</label>
+          <select name="eStatus" id="eStatus" class="form-control">
+            <option selected="selected" value="${task.status}" selected disabled hidden>
+            ${task.status}
+            </option>
+            <option value="To-do">To-do</option>
+            <option value="On-going">On-going</option>
+            <option value="Done">Done</option>
+          </select>
         </div>
         <div class="mb-3">
           <label for="eAssign_to" class="col-form-label">Assign to:</label>
-          <input type="text" name="eAssign_to" id="eAssign_to" value="${task.assign_to}" class="form-control"></input>
+          <input type="text" name="eAssign_to" id="eAssign_to" value="${task.assign_to}" maxlength="10" required class="form-control"></input>
         </div>
         <div class="mb-3">
           <label for="eDue_date" class="col-form-label">Due date:</label>
-          <input type="text" name="eDue_date" id="eDue_date " value="${task.due_date.substr(0,10)}" class="form-control"></input>
+          <input type="date" name="eDue_date" id="eDue_date " value="${task.due_date.substr(0,10)}" required class="form-control"></input>
         </div>
+        <div class="modal-footer">
         <button type="submit" value="submit" class="btn btn-primary">Submit</button>
+        </div>
       </form>
         `;
         
@@ -112,7 +121,7 @@ async function getTaskByIdAndEditTask(taskID) {
         if (res.status === 200 && result.success) {
             window.onload()
             fetchAndDisplayTasks();
-            window.location = "/index.html";
+            window.location = "/homepage.html";
         }
     });
     // document.querySelector('.modal-body.edit').style['tabindex'] = -1
@@ -128,7 +137,7 @@ async function fetchAndDisplayTasks() {
         htmlStr += `
         <div class="card">
         <div class="card-head">
-            <h1>${tasks.title}</h1>
+            <div class="task-title">${tasks.title}</div>
             <div class="dropdown">
                 <a class="btn" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fas fa-ellipsis-h"></i>
@@ -142,11 +151,11 @@ async function fetchAndDisplayTasks() {
               </div>
         </div>
         <div class="card-body">
-            <p>${tasks.content}</p>
+            <p class="task-content">${tasks.content}</p>
         </div>
         <div class="card-foot">
-            <h5>${tasks.status}</h5>            
-            <h5>${tasks.due_date.substr(0,10)}</h5>
+            <div class="status">${tasks.status}</div>            
+            <h5 class="due_date">${tasks.due_date.substr(0,10)}</h5>
             <div class="assignto">${tasks.assign_to}</div>
         </div>
 </div>`;
@@ -178,6 +187,7 @@ document.querySelector("#tasks-form")
 
         if (res.status === 200 && result.success) {
             inputData.reset();
+            window.location = "/homepage.html";
             fetchAndDisplayTasks();
         }
     });
