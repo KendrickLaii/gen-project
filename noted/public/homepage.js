@@ -1,5 +1,6 @@
 window.onload = async () => {
     await fetchAndDisplayTasks();
+    // await displayTodoTasks();
     // initLoginForm();
 };
 
@@ -161,7 +162,132 @@ async function fetchAndDisplayTasks() {
 </div>`;
     }
     document.querySelector(".card-area").innerHTML = htmlStr;
+    document.querySelector(".status-name").innerHTML = "All Tasks";
 }
+
+// display to-do tasks
+async function displayTodoTasks () {
+    const res = await fetch("/tasks");
+    const data = await res.json();
+    console.log(data)
+    let todoHtmlStr = ``;
+    for (const tasks of data) {
+        if (tasks.status !== "To-do") {
+            console.log("not to-do");
+        } else {
+            todoHtmlStr += `
+            <div class="card">
+            <div class="card-head">
+                <div class="task-title">${tasks.title}</div>
+                <div class="dropdown">
+                    <a class="btn" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                      <li>
+                           <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editModal" onclick="getTaskByIdAndEditTask(${tasks.id})">Edit</a>
+                      </li>
+                      <li><a class="dropdown-item" onclick="deleteTask(${tasks.id})">Delete</a></li>
+                    </ul>
+                  </div>
+            </div>
+            <div class="card-body">
+                <p class="task-content">${tasks.content}</p>
+            </div>
+            <div class="card-foot">
+                <div class="status">${tasks.status}</div>            
+                <h5 class="due_date">${tasks.due_date.substr(0,10)}</h5>
+                <div class="assignto">${tasks.assign_to}</div>
+            </div>
+            </div>`;
+        }
+    }
+    document.querySelector(".card-area").innerHTML = todoHtmlStr;
+    document.querySelector(".status-name").innerHTML = "To-do";
+}
+
+// display on-going tasks
+async function displayOnGoingTasks () {
+    const res = await fetch("/tasks");
+    const data = await res.json();
+    console.log(data)
+    let onGoingHtmlStr = ``;
+    for (const tasks of data) {
+        if (tasks.status !== "On-going") {
+            console.log("not On-going");
+        } else {
+            onGoingHtmlStr += `
+            <div class="card">
+            <div class="card-head">
+                <div class="task-title">${tasks.title}</div>
+                <div class="dropdown">
+                    <a class="btn" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                      <li>
+                           <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editModal" onclick="getTaskByIdAndEditTask(${tasks.id})">Edit</a>
+                      </li>
+                      <li><a class="dropdown-item" onclick="deleteTask(${tasks.id})">Delete</a></li>
+                    </ul>
+                  </div>
+            </div>
+            <div class="card-body">
+                <p class="task-content">${tasks.content}</p>
+            </div>
+            <div class="card-foot">
+                <div class="status">${tasks.status}</div>            
+                <h5 class="due_date">${tasks.due_date.substr(0,10)}</h5>
+                <div class="assignto">${tasks.assign_to}</div>
+            </div>
+            </div>`;
+        }
+    }
+    document.querySelector(".card-area").innerHTML = onGoingHtmlStr;
+    document.querySelector(".status-name").innerHTML = "On-going";
+}
+
+// display Done Tasks
+async function displayDoneTasks () {
+    const res = await fetch("/tasks");
+    const data = await res.json();
+    console.log(data)
+    let doneHtmlStr = ``;
+    for (const tasks of data) {
+        if (tasks.status !== "Done") {
+            console.log("Not Done");
+        } else {
+            doneHtmlStr += `
+            <div class="card">
+            <div class="card-head">
+                <div class="task-title">${tasks.title}</div>
+                <div class="dropdown">
+                    <a class="btn" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                      <li>
+                           <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editModal" onclick="getTaskByIdAndEditTask(${tasks.id})">Edit</a>
+                      </li>
+                      <li><a class="dropdown-item" onclick="deleteTask(${tasks.id})">Delete</a></li>
+                    </ul>
+                  </div>
+            </div>
+            <div class="card-body">
+                <p class="task-content">${tasks.content}</p>
+            </div>
+            <div class="card-foot">
+                <div class="status">${tasks.status}</div>            
+                <h5 class="due_date">${tasks.due_date.substr(0,10)}</h5>
+                <div class="assignto">${tasks.assign_to}</div>
+            </div>
+            </div>`;
+        }
+    }
+    document.querySelector(".card-area").innerHTML = doneHtmlStr;
+    document.querySelector(".status-name").innerHTML = "Done";
+}
+
 
 // creata tasks
 document.querySelector("#tasks-form")

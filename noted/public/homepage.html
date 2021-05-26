@@ -25,15 +25,10 @@
     </div>
     <div class="secNav-pc">
       <li class="secNav-pc-status">
-        <p class="secNav-pc-status-name">
-          To-do
-        </p>
-        <p class="secNav-pc-status-name">
-          On-going
-        </p>
-        <p class="secNav-pc-status-name">
-          Done
-        </p>
+          <button onclick="fetchAndDisplayTasks()" class="secNav-pc-status-name" >All</button>
+          <button onclick="displayTodoTasks()" class="secNav-pc-status-name" >To-do</button>
+          <button onclick="displayOnGoingTasks()" class="secNav-pc-status-name" >On-going</button>
+          <button onclick="displayDoneTasks()" class="secNav-pc-status-name" >Done</button>
       </li>
       <li class="addNewTaskButton">
         <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
@@ -100,7 +95,7 @@
       </li>
     </div>
     <div class="main">
-      <h1 class="status-name">Tasks</h1>
+      <h1 class="status-name">All Tasks</h1>
       <div class="card-area">
             <!-- <div class="card">
                     <div class="card-head">

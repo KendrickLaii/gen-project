@@ -49,6 +49,7 @@
 
 /* second navbar */
 
+
 .secNav-phone {
     height: 35px;
     display: flex;
@@ -210,6 +211,8 @@
     }
     
     .secNav-pc-status-name {
+        background: none;
+        border: none;
         margin: 5px 20px 5px 20px;
         font-size: 1.2rem;
     }
