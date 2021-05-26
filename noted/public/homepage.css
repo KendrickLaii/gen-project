@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;500;700&display=swap');
+
+:root {
+	font-size: 100%;
+	font-size: 16px;
+	line-height: 1.5;
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Zilla Slab', serif;
+	font-weight: 500;
+}
+
+/* fist navbar */
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5 )),url('./uploads/login.jpg');
+	background-size: cover;
+}
+
+.nav li {
+    list-style-type: none;
+}
+
+.logo {
+    font-family: 'Lobster', cursive;
+    font-weight: 700;
+    font-size: 2rem;
+    color: #feda6a;
+}
+
+.username {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #ffffff;
+}
+
+/* first navbar endhere */
+
+
+/* second navbar */
+
+.secNav-phone {
+    height: 35px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.secNav-phone li {
+    list-style-type: none;
+}
+
+.secNav-pc {
+    display: none;
+}
+
+.status-select {
+    width: 5.3rem;
+    height: 2.2rem;
+}
+
+.status-name {
+    display: flex;
+    justify-content: center;
+}
+
+.addNewTaskButton {
+    font-size: 1.5rem;
+    margin: 5px 20px 5px 20px;
+}
+
+/* end here */
+
+.card-area {
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    margin-left: 10px;
+    margin-bottom: 5px;
+    background-color: #B4F8C8;
+    height: 250px;
+    width: 350px;
+    border-radius: 1%;
+}
+
+.card-head {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-head h1 {
+    margin: 5px 5px 5px 10px;
+}
+
+.card-foot {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-foot .assignto{
+    margin: 5px 10px 5px 5px;
+}
+
+.card-foot select {
+    margin: 5px 5px 5px 10px;
+}
+
+@media screen and (min-width: 900px) {
+    .card-area {
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        display: flex;
+        justify-content: center;
+    }
+
+    .secNav-phone {
+        display: none;
+    }
+
+    .secNav-pc {
+        height: 35px;
+        background-color: #ffffff;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .secNav-pc {
+        list-style-type: none;
+    }
+
+    .secNav-pc-status {
+        display: flex;
+        
+    }
+    
+    .secNav-pc-status-name {
+        margin: 5px 20px 5px 20px;
+        font-size: 1.2rem;
+    }
+}

@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;500;700&display=swap');
+
+:root {
+	font-size: 100%;
+	font-size: 16px;
+	line-height: 1.5;
+
+}
+
+body {
+	padding: 0;
+	margin: 0;
+	font-family: 'Zilla Slab', serif;
+	font-weight: 500;
+}
+
+h1 {
+	font-size: 2.25rem; 
+	font-weight: 700;
+}
+
+h2 {
+	font-size: 1.5rem;
+	font-weight: 700;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+.small {
+	font-size: 80%;
+	text-align: center;
+}
+
+.split-screen {
+	display: flex;
+	flex-direction: column;
+}
+
+.left {
+	height: 200px;
+}
+
+.left, .right {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.left {
+	background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5 )),url('../img/login.jpg');
+	background-size: cover;
+}
+
+.left .copy {
+	 color: #feda6a;
+	 text-align: center;
+}
+
+.left h1 {
+	font-family: 'Lobster', cursive;
+}
+
+.left p {
+	font-family: 'Zilla Slab', serif;
+	font-size: 18px;
+	font-weight: 500;
+}
+
+.right .copy {
+	color: #3a4660;
+	text-align: center;
+}
+
+.copy h1 {
+	font-weight: 700;
+}
+
+.right .copy p {
+	margin: 1.5rem 0;
+	font-size: 0.875rem;
+}
+
+.right form {
+	width: 328px;
+}
+
+form input[type="text"], 
+form input[type="email"],
+form input[type="password"] {
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
+	border-radius: 8px;
+	border: 1px solid #c4c4c4;
+	padding: 1em;
+	font-size: 0.95rem;
+	color: #3a4660;
+	outline: none;
+}
+
+form input[type="text"] {
+	margin-bottom: 1.25rem;
+}
+
+form input[type="email"] {
+	margin-bottom: 1.25rem;
+}
+
+form input[type="password"] {
+	margin-bottom: 1.25rem;
+}
+
+label {
+	display: block;
+	margin-bottom: 0.5rem;
+	font-size: 0.95rem;
+}
+
+.find-account {
+	margin-bottom: 0.3rem;
+}
+
+.signup-btn {
+	display: block;
+	width: 100%;
+	background: #283747;
+	color: white;
+	font-weight: 700;
+	border: none;
+	padding: 1rem;
+	border-radius: 8px;
+	font-family:'Zilla Slab', serif;
+	font-size: 0.85rem;
+	text-transform: uppercase;
+	letter-spacing:  0.5px;
+}
+
+.signup-btn:hover {
+	background: #4d5e70;
+	cursor: pointer;
+}
+
+.new-account a {
+	font-size: 18px;
+}
+
+
+.linked-ac span {
+	font-size: 18px;
+}
+
+/* .fab {
+	font-size: 18px;
+	margin-right: 5px;
+	margin-left: 5px;
+} */
+
+@media screen and (min-width: 900px) {
+	.split-screen {
+		flex-direction: row;
+		height: 100vh;
+	}
+	.left,
+	.right {
+		display: flex;
+		width: 50%;
+		height: auto;
+	}
+}
+
+.hello {
+	font-size: 50px;
+}

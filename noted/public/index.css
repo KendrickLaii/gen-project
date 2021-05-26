@@ -8,144 +8,164 @@
 
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    font-family: 'Zilla Slab', serif;
+body {
+	padding: 0;
+	margin: 0;
+	font-family: 'Zilla Slab', serif;
 	font-weight: 500;
 }
 
-/* fist navbar */
+h1 {
+	font-size: 2.25rem; 
+	font-weight: 700;
+}
 
-.nav {
-    display: flex;
-    justify-content: space-between;
-    height: 50px;
-    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5 )),url('./uploads/login.jpg');
+h2 {
+	font-size: 1.5rem;
+	font-weight: 700;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+.small {
+	font-size: 80%;
+	text-align: center;
+}
+
+.split-screen {
+	display: flex;
+	flex-direction: column;
+}
+
+.left {
+	height: 200px;
+}
+
+.left, .right {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.left {
+	background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5 )),url('./uploads/login.jpg');
 	background-size: cover;
 }
 
-.nav li {
-    list-style-type: none;
+.left .copy {
+	 color: #feda6a;
+	 text-align: center;
 }
 
-.logo {
-    font-family: 'Lobster', cursive;
-    font-weight: 700;
-    font-size: 2rem;
-    color: #feda6a;
+.left h1 {
+	font-family: 'Lobster', cursive;
 }
 
-.username {
-    font-weight: 700;
-    font-size: 1.5rem;
-    color: #ffffff;
+.left p {
+	font-family: 'Zilla Slab', serif;
+	font-size: 18px;
+	font-weight: 500;
 }
 
-/* first navbar endhere */
-
-
-/* second navbar */
-
-.secNav-phone {
-    height: 35px;
-    display: flex;
-    justify-content: space-between;
+.right .copy {
+	color: #3a4660;
+	text-align: center;
 }
 
-.secNav-phone li {
-    list-style-type: none;
+.copy h1 {
+	font-weight: 700;
 }
 
-.secNav-pc {
-    display: none;
+.right .copy p {
+	margin: 1.5rem 0;
+	font-size: 0.875rem;
 }
 
-.status-select {
-    width: 5.3rem;
-    height: 2.2rem;
+.right form {
+	width: 328px;
 }
 
-.status-name {
-    display: flex;
-    justify-content: center;
+form input[type="text"], 
+form input[type="password"] {
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
+	border-radius: 8px;
+	border: 1px solid #c4c4c4;
+	padding: 1em;
+	font-size: 0.95rem;
+	color: #3a4660;
+	outline: none;
 }
 
-.addNewTaskButton {
-    font-size: 1.5rem;
-    margin: 5px 20px 5px 20px;
+form input[type="text"] {
+	margin-bottom: 1.25rem;
 }
 
-/* end here */
-
-.card-area {
-    flex-direction: column;
-    display: flex;
-    justify-content: center;
+form input[type="password"] {
+	margin-bottom: 0.5rem;
 }
 
-.card {
-    margin-left: 10px;
-    margin-bottom: 5px;
-    background-color: #B4F8C8;
-    height: 250px;
-    width: 350px;
-    border-radius: 1%;
+label {
+	display: block;
+	margin-bottom: 0.5rem;
+	font-size: 0.95rem;
 }
 
-.card-head {
-    display: flex;
-    justify-content: space-between;
+.find-account {
+	margin-bottom: 0.3rem;
 }
 
-.card-head h1 {
-    margin: 5px 5px 5px 10px;
+.login-btn {
+	display: block;
+	width: 100%;
+	background: #283747;
+	color: white;
+	font-weight: 700;
+	border: none;
+	padding: 1rem;
+	border-radius: 8px;
+	font-family:'Zilla Slab', serif;
+	font-size: 0.85rem;
+	text-transform: uppercase;
+	letter-spacing:  0.5px;
 }
 
-.card-foot {
-    display: flex;
-    justify-content: space-between;
+.login-btn:hover {
+	background: #4d5e70;
+	cursor: pointer;
 }
 
-.card-foot .assignto{
-    margin: 5px 10px 5px 5px;
+.new-account a {
+	font-size: 18px;
 }
 
-.card-foot select {
-    margin: 5px 5px 5px 10px;
+
+.linked-ac span {
+	font-size: 18px;
+}
+
+.fab {
+	font-size: 18px;
+	margin-right: 5px;
+	margin-left: 5px;
 }
 
 @media screen and (min-width: 900px) {
-    .card-area {
-        width: 100%;
-        flex-direction: row;
-        flex-wrap: wrap;
-        display: flex;
-        justify-content: center;
-    }
-
-    .secNav-phone {
-        display: none;
-    }
-
-    .secNav-pc {
-        height: 35px;
-        background-color: #ffffff;
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .secNav-pc {
-        list-style-type: none;
-    }
-
-    .secNav-pc-status {
-        display: flex;
-        
-    }
-    
-    .secNav-pc-status-name {
-        margin: 5px 20px 5px 20px;
-        font-size: 1.2rem;
-    }
+	.split-screen {
+		flex-direction: row;
+		height: 100vh;
+	}
+	.left,
+	.right {
+		display: flex;
+		width: 50%;
+		height: auto;
+	}
 }
