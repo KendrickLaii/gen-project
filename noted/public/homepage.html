@@ -82,11 +82,17 @@
     </div>
     <div class="secNav-phone">
       <li>
-        <select class="status-select">
-          <option>To-do</option>
-          <option>On-going</option>
-          <option>Done</option>
-        </select>
+        <div class="dropdown-status">
+          <a class="btn" type="button" id="dropdownMenuPhone" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-chevron-circle-down"></i>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuPhone">
+            <li><button class="dropdown-item" type="button" onclick="fetchAndDisplayTasks()">All Tasks</button></li>
+            <li><button class="dropdown-item" type="button" onclick="displayTodoTasks()">To-do</button></li>
+            <li><button class="dropdown-item" type="button" onclick="displayOnGoingTasks()">On-going</button></li>
+            <li><button class="dropdown-item" type="button" onclick="displayDoneTasks()">Done</button></li>
+          </ul>
+        </div>
       </li>
       <li class="addNewTaskButton">
         <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
@@ -169,6 +175,11 @@
       </div>
     </div>
   </div>
+  <footer>
+    <!-- <div class="wave">
+      123
+    </div> -->
+  </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"

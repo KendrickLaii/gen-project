@@ -5,19 +5,25 @@
 	font-size: 100%;
 	font-size: 16px;
 	line-height: 1.5;
-
 }
 
-* {
+* { 
     margin: 0;
     padding: 0;
     font-family: 'Zilla Slab', serif;
 	font-weight: 500;
 }
 
-.main {
+body {
     background-color: #ffffff;
+    background-image: url(./uploads/wave\ \(1\).svg);
+    background-position: bottom; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: contain;
+    
 }
+
+
 
 /* fist navbar */
 
@@ -84,6 +90,11 @@
     margin: 5px 20px 5px 20px;
 }
 
+.dropdown-status {
+    font-size: 1.5rem;
+    margin: 5px 20px 5px 15px;
+}
+
 /* end here */
 
 /* tasks */
@@ -96,17 +107,18 @@
 .card-area {
     flex-direction: column;
     display: flex;
-    justify-content: center;
+    align-items: center;
 }
 
 .card {
-    margin: 30px 20px 20px 30px;
+    margin: 20px 20px 20px 20px;
     width: 350px;
     height: 350px;
-    border-radius: 15px;
-    background: #ffffff;
-    box-shadow:  35px 35px 70px #bebebe,
-                 -35px -35px 70px #ffffff;
+    background: rgba( 255, 255, 255, 0.05 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 17.0px ) ;
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
 .card:hover {
@@ -132,7 +144,7 @@
 }
 
 .card-body .task-content {
-    font-size: 16px;
+    font-size: 1.10rem;
 }
 
 .card-foot {
@@ -153,6 +165,12 @@
 .card-foot .due_date {
     margin: 5px 5px 5px 5px;
 }
+
+/* footer */
+
+/* .wave {
+    background-image: url(./uploads/20.svg);
+} */
 
 /* modal */
 
